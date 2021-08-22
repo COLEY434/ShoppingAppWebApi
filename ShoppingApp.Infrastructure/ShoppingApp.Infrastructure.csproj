@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Database\Config\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
