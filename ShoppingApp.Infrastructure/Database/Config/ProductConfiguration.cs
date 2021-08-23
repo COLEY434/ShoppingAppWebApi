@@ -21,6 +21,8 @@ namespace ShoppingApp.Infrastructure.Database.Config
             builder.Property(k => k.Size).HasMaxLength(50).IsRequired();
             builder.Property(k => k.Price).HasPrecision(10, 2);
             builder.Property(k => k.DateAdded).HasColumnType("datetime");
+            builder.Property(k => k.CategoryId).HasColumnName("category_id").IsRequired(false);
+            builder.HasOne(k => k.Category).WithMany(p => p.Products).HasForeignKey(f => f.CategoryId);
         }
     }
 }
