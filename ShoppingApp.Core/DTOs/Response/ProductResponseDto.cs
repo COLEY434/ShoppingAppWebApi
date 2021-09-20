@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShoppingApp.Core.Entities
+namespace ShoppingApp.Core.DTOs.Response
 {
-    public class Product
+    public class ProductResponseDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -17,7 +17,5 @@ namespace ShoppingApp.Core.Entities
         public string Size { get; set; }
         public string Color { get; set; }
         public DateTime DateAdded { get; set; }
-        public int? CategoryId { get; set; }
-        public Category Category { get; set; }
     }
 }

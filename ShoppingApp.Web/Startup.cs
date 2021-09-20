@@ -8,10 +8,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ShoppingApp.Core.Interfaces;
+using ShoppingApp.Core.Interfaces.Repositries;
+using ShoppingApp.Core.Interfaces.Services;
+using ShoppingApp.Core.Profiles;
 using ShoppingApp.Infrastructure.Database;
+using ShoppingApp.Infrastructure.Repositries;
+using ShoppingApp.Infrastructure.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace ShoppingApp.Web
@@ -36,6 +43,9 @@ namespace ShoppingApp.Web
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ShoppingApp.Web", Version = "v1" });
             });
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddScoped<IProductService, ProductService>();          
+            services.AddScoped<IProductRepository, ProductRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
