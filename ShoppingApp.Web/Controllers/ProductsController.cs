@@ -4,6 +4,7 @@ using ShoppingApp.Core.DTOs.Request;
 using ShoppingApp.Core.DTOs.Response;
 using ShoppingApp.Core.Interfaces;
 using ShoppingApp.Core.Interfaces.Services;
+using ShoppingApp.Web.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace ShoppingApp.Web.Controllers
         }
 
         [HttpPost("AddProducts")]
+        [ValidateModel]
         public async Task<ActionResult> AddProductsAsync([FromBody] ProductRequestDto requestDto)
         {
             try
