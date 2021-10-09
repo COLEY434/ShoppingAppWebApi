@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using ShoppingApp.Core.DTOs.Request;
 using ShoppingApp.Core.DTOs.Response;
 using ShoppingApp.Core.Interfaces;
@@ -17,9 +18,12 @@ namespace ShoppingApp.Web.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
-        public ProductsController(IProductService productService)
+        private readonly ILogger<ProductsController> _logger;
+
+        public ProductsController(IProductService productService, ILogger<ProductsController> logger)
         {
             _productService = productService;
+            _logger = logger;
         }
 
         [HttpPost("AddProducts")]
@@ -47,12 +51,14 @@ namespace ShoppingApp.Web.Controllers
         {
             try
             {
+                _logger.LogInformation("Getting all products");
                 var result = await _productService.GetAllProductsAsync();
                           
                 return Ok(result);                          
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 return StatusCode(500, new { Success = false, Message = "Error getting product" });
             }
 
