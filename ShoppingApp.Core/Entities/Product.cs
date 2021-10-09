@@ -19,5 +19,7 @@ namespace ShoppingApp.Core.Entities
         public DateTime DateAdded { get; set; }
         public int? CategoryId { get; set; }
         public Category Category { get; set; }
+        public bool IsDisabled { get; set; }
+        public bool Isdeleted { get; set; }
     }
 }
