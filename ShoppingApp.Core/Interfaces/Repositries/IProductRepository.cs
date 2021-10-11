@@ -10,6 +10,9 @@ namespace ShoppingApp.Core.Interfaces.Repositries
     public interface IProductRepository
     {
         Task<IEnumerable<Product>> GetAllProducts();
-        Task<bool> AddProduct(Product product);
+        Task AddProduct(Product product);
+        Task<Product> CheckIfProductExist(int id);
+        Task UpdateProductAsync(Product product);
+        Task DeleteProductAsync(Product product);
     } 
 }

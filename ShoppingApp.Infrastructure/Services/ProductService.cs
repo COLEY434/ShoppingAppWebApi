@@ -23,13 +23,30 @@ namespace ShoppingApp.Infrastructure.Services
             _mappper = mapper;
             _productRepo = productRepo;
         }
-        public async Task<bool> AddProductAsync(ProductRequestDto req)
+        public async Task AddProductAsync(ProductRequestDto req)
         {
             var product = _mappper.Map<Product>(req);
+            product.DateAdded = DateTime.Now;
+            product.DateModified = DateTime.Now;
 
-            var result = await _productRepo.AddProduct(product);
-           
-            return result;
+            await _productRepo.AddProduct(product);
+
+        }
+
+        public async Task<bool> DeleteProductAsync(int id)
+        {
+            var product = await _productRepo.CheckIfProductExist(id);
+
+            if (product == null)
+            {
+                return false;
+            }
+
+            product.Isdeleted = true;
+            product.IsDisabled = true;
+
+            await _productRepo.DeleteProductAsync(product);
+            return true;
         }
 
         public async Task<IEnumerable<ProductResponseDto>> GetAllProductsAsync()
@@ -38,6 +55,28 @@ namespace ShoppingApp.Infrastructure.Services
             var result =  _mappper.Map<IEnumerable<ProductResponseDto>>(products);
 
             return result;
+        }
+
+        public async Task<bool> UpdateProductAsync(ProductRequestDto req, int id)
+        {
+            var product = await _productRepo.CheckIfProductExist(id);
+            
+            if (product == null)
+            {
+                return false;
+            }
+
+            product.Name = req.Name;
+            product.Brand = req.Brand;
+            product.Color = req.Color;
+            product.Description = req.Description;
+            product.Price = req.Price;
+            product.Quantity = req.Quantity;
+            product.Size = req.Size;
+            product.DateModified = DateTime.Now;
+
+            await _productRepo.UpdateProductAsync(product);
+            return true;
         }
     }
 }

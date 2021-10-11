@@ -10,7 +10,9 @@ namespace ShoppingApp.Core.Interfaces.Services
 {
     public interface IProductService
     {
-        Task<bool> AddProductAsync(ProductRequestDto product);
+        Task AddProductAsync(ProductRequestDto req);
+        Task<bool> UpdateProductAsync(ProductRequestDto req, int id);
         Task<IEnumerable<ProductResponseDto>> GetAllProductsAsync();
+        Task<bool> DeleteProductAsync(int id);
     }
 }

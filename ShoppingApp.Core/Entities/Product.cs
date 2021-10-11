@@ -17,7 +17,8 @@ namespace ShoppingApp.Core.Entities
         public string Size { get; set; }
         public string Color { get; set; }
         public DateTime DateAdded { get; set; }
-        public int? CategoryId { get; set; }
+        public DateTime DateModified { get; set; }
+        public int CategoryId { get; set; }
         public Category Category { get; set; }
         public bool IsDisabled { get; set; }
         public bool Isdeleted { get; set; }
