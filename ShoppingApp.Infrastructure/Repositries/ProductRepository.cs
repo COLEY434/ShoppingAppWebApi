@@ -26,12 +26,28 @@ namespace ShoppingApp.Infrastructure.Repositries
             return products;
         }
 
-        public async Task<bool> AddProduct(Product product)
+        public async Task AddProduct(Product product)
         {
             await _dbContext.Products.AddAsync(product);
             await _dbContext.SaveChangesAsync();
+        }
 
-            return true;
+        public async Task<Product> CheckIfProductExist(int id)
+        {
+            return await _dbContext.Products.FindAsync(id);
+        }
+
+        public async Task UpdateProductAsync(Product product)
+        {
+
+             _dbContext.Products.Update(product);
+             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteProductAsync(Product product)
+        {
+            _dbContext.Products.Update(product);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
