@@ -19,6 +19,7 @@ using ShoppingApp.Core.Profiles;
 using ShoppingApp.Infrastructure.Database;
 using ShoppingApp.Infrastructure.Repositries;
 using ShoppingApp.Infrastructure.Services;
+using ShoppingApp.Web.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;

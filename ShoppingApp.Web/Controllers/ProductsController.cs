@@ -118,7 +118,7 @@ namespace ShoppingApp.Web.Controllers
         }
 
         [HttpDelete("{id}/Delete")]
-        public async Task<ActionResult> UpdateProductAsync([FromRoute] int id)
+        public async Task<ActionResult> DeleteProductAsync([FromRoute] int id)
         {
             try
             {

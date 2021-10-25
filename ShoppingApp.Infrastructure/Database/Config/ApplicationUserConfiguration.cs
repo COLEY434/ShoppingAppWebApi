@@ -20,6 +20,7 @@ namespace ShoppingApp.Infrastructure.Database.Config
             builder.Property(k => k.Email).HasMaxLength(100).IsRequired();
             builder.Property(k => k.PhoneNumber).HasMaxLength(100).IsRequired();
             builder.Property(k => k.Address).IsRequired();
+            builder.HasIndex(k => k.Email).IsUnique();
         }
     }
 }
